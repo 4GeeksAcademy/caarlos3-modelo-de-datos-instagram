@@ -25,7 +25,11 @@ class User(db.Model):
             "email": self.email,
             "first_name": self.first_name,
             "last_name": self.last_name,
-            "user_name": self.user_name    
+            "user_name": self.user_name,
+            "followers": self.followers,
+            "following": self.following,
+            "author": self.author,
+            "user_post": self.user_post
         }
 
 class Follower(db.Model):
@@ -54,7 +58,8 @@ class Comment(db.Model):
             "id": self.id,
             "comment_text": self.comment_text,
             "author_id": self.author_id,  
-            "post_id": self.post_id
+            "post_id": self.post_id,
+            "post": self.post
         }
 
 
@@ -68,6 +73,9 @@ class Post(db.Model):
     def serialize(self):
         return{
             "id": self.id,
+            "user_id": self.user_id,
+            "comments": self.comments,
+            "media": self.media
         }
 
 
@@ -85,7 +93,9 @@ class Media(db.Model):
     def serialize(self):
         return{
             "id": self.id,
-            "url": self.url
+            "url": self.url,
+            "posted_id": self.posted_id,
+            "post": self.post
         }
 
 
